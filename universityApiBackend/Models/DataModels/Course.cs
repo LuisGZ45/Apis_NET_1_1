@@ -2,27 +2,34 @@
 
 namespace universityApiBackend.Models.DataModels
 {
-    public enum LevelNames
+    public enum Level
     {
-        Básico,
-        Intermedio,
-        Avanzado
+        Basic,
+        Medium,
+        Advanced,
+        Expert
     }
-public class Course: BaseEntity
+    public class Course : BaseEntity
     {
         [Required, StringLength(50)]
         public string Name { get; set; } = string.Empty;
         [Required, StringLength(280)]
-        public string DescriptionShort { get; set; } = string.Empty;
+        public string ShortDescription { get; set; } = string.Empty;
         [Required]
-        public string DescriptionLarge { get; set; } = string.Empty;
+        public string Description { get; set; } = string.Empty;
+        //[Required]
+        //public string ObjectivePublic { get; set; } = string.Empty;
+        //[Required]
+        //public string Objectives { get; set; } = string.Empty;
+        //[Required]
+        //public string Requirements { get; set; } = string.Empty;
         [Required]
-        public string ObjectivePublic { get; set; } = string.Empty;
+        public Level Level { get; set; } = Level.Basic;
         [Required]
-        public string Objectives { get; set;} = string.Empty;
+        public ICollection<Category> Categories { get; set; } = new List<Category>();
         [Required]
-        public string Requirements { get; set; } = string.Empty;
+        public ICollection<Student> Students { get; set; } = new List<Student>();
         [Required]
-        public LevelNames Level { get; set; }
+        public Chapter Chapter { get; set; } = new Chapter();
     }
 }
